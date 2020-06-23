@@ -6,6 +6,7 @@ namespace CodeBlogFitness.BL.Model
     /// <summary>
     /// пользователь
     /// </summary>
+    [Serializable]
    public class User
 
     {
@@ -53,10 +54,10 @@ namespace CodeBlogFitness.BL.Model
             {
                 throw new ArgumentNullException(" имя не может быть пустым или null", nameof(name));
             }
-            if (Gender==null)
-            {
-                throw new ArgumentNullException("пол не может быть пустым или null", nameof(gender));
-            }
+           // if (Gender==null)
+          //  {
+               // throw new ArgumentNullException("пол не может быть пустым или null", nameof(gender));
+           // }
             if( birthdate < DateTime.Parse("01.01.1900") || birthdate>= DateTime.Now)
             {
                 throw new ArgumentNullException("невозможная дата рождения", nameof(birthdate));
