@@ -18,12 +18,12 @@ namespace CodeBlogFitness.BL.Model
         /// <summary>
         /// пол
         /// </summary>
-        public Gender Gender { get; }
+        public Gender Gender { get; set; }
         /// <summary>
         /// дата рождение
         /// </summary>
 
-        public DateTime Birthdate { get; }
+        public DateTime Birthdate { get; set; }
         /// <summary>
         /// вес
         /// </summary>
@@ -33,6 +33,8 @@ namespace CodeBlogFitness.BL.Model
         /// рост
         /// </summary>
         public double Height { get; set; }
+
+        public int Age { get { return DateTime.Now.Year - Birthdate.Year; } }
         #endregion
 
         /// <summary>
@@ -54,10 +56,10 @@ namespace CodeBlogFitness.BL.Model
             {
                 throw new ArgumentNullException(" имя не может быть пустым или null", nameof(name));
             }
-           // if (Gender==null)
-          //  {
-               // throw new ArgumentNullException("пол не может быть пустым или null", nameof(gender));
-           // }
+            if (gender==null)
+            {
+                throw new ArgumentNullException("пол не может быть пустым или null", nameof(gender));
+            }
             if( birthdate < DateTime.Parse("01.01.1900") || birthdate>= DateTime.Now)
             {
                 throw new ArgumentNullException("невозможная дата рождения", nameof(birthdate));
@@ -79,9 +81,18 @@ namespace CodeBlogFitness.BL.Model
             Weight = weight;
             Height = height;
         }
+        public User(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentNullException(" имя не может быть пустым или null", nameof(name));
+            }
+            Name = name;
+
+        }
         public override string ToString()
         {
-            return Name;
+            return Name + " " + Age;
         }
     }
 }
